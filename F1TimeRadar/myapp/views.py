@@ -3,6 +3,7 @@ from django.http import HttpResponse, JsonResponse
 from .models import Time
 from myapp.utils.classes import SignalRClient
 import threading, logging
+from django.conf import settings
 
 def run_req():
   log = logging.getLogger()
@@ -10,8 +11,6 @@ def run_req():
   connect = SignalRClient(logger=log)
   connect.start()
 
-# def data(request):
-#   return JsonResponse({'time': Time.objects().all()})
 
 # Create your views here.
 def home(request):

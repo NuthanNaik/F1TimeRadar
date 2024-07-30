@@ -24,6 +24,29 @@ def full_data_update(msg):
 
 # CarData.z
 def carData(msg):
+  data_list = []
+  for i in msg['entries']:
+    time = format_time(i['utc'])
+    data_list.append(Data(time, "carData", i['Cars']))
+    # data
+    # racingNumber = key
+    # value['Channels'] {"0": 11331 #RPM, "2": 252 #Speed, "3": 6 #gear, "4": 100 #throttle, "5": 0 #brake, "45": 8 #drs}
+    # 0,1 -DRS OFF ; 8-DRS Detected ; 10,12,14 - DRS on
+  return data_list
+
+# Position.z
+def positionData(msg):
+  data_list = []
+  for i in msg['Position']:
+    time = format_time(i['Timestamp'])
+    data_list.append(Data(time, "position", i['Entries']))
+    # data
+    # key = raceNumber
+    # value {"Status": "OnTrack", "X": -3616, "Y": 904, "Z": 7337}
+  return data_list
+
+# CarData.z and position.z decompressor
+def decompressedData(msg):
   decoded_bytes = base64.b64decode(msg)
   try:
      decompressed_bytes = zlib.decompress(decoded_bytes)
@@ -32,10 +55,6 @@ def carData(msg):
   decompressed_str = decompressed_bytes.decode('utf-8')
   car_data = json.loads(decompressed_str)
   return car_data
-
-# Position.z
-def positionData(msg):
-   pass
 
 # ExtrapolatedClock
 def extrapolatedClock(msg):
@@ -85,9 +104,10 @@ def format_data(msg):
   if 'M' in line.keys() and line['M']:
     for i in line['M']:
         if 'A' in i.keys() and i['A']:
-            type = i['A'][0]
-            data = str(i['A'][1])
-            time = format_time(i['A'][2])
-            new_data = Data(time, type, data)
+            # type = i['A'][0]
+            # data = str(i['A'][1])
+            # time = format_time(i['A'][2])
+            # new_data = Data(time, type, data)
+            pass
   elif 'R' in line.keys():
      full_data_update(line['R'])
