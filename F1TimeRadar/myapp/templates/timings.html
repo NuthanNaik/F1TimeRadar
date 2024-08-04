@@ -6,9 +6,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>F1TimeRadar Timings</title>
     <link rel="stylesheet" type="text/css" href="{% static './styles.css' %}" />
+    <link rel="preconnect" href="https://rsms.me/" />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
   </head>
   <body>
-    <h2>Hello, world! Welcome to my Timings website.</h2>
-    <div>Hello</div>
+    <div class="info">
+      <div class="left-info">
+        <div class="race-info">
+          <div class="race-flag">
+            <img
+              src="https://media.formula1.com/content/dam/fom-website/2018-redesign-assets/Flags%2016x9/italy-flag.png"
+              alt="race-flag"
+            />
+          </div>
+          <div class="race-track">
+            <div class="track-name" style="color: rgb(255, 149, 149)">
+              Emilia-Romagna
+            </div>
+            <div class="event-type">Race</div>
+          </div>
+        </div>
+        <div class="lap-data">20/56</div>
+        <div
+          class="track-status"
+          style="background-color: rgba(255, 234, 0, 0.8)"
+        >
+          SECTOR 8
+        </div>
+      </div>
+      <div class="play-session left-info">
+        <div class="play-button"></div>
+        <div class="play-scrollbar"></div>
+        <div class="live-button"></div>
+      </div>
+      <div class="track-info left-info">
+        <div class="track-info-item" id="wind"></div>
+        <div class="track-info-item" id="trc"></div>
+        <div class="track-info-item" id="air"></div>
+        <div class="track-info-item" id="presp"></div>
+        <div class="track-info-item" id="wet-status"></div>
+      </div>
+    </div>
   </body>
 </html>
